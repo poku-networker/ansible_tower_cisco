@@ -1,0 +1,26 @@
+---
+## Playbook to show version on IOS
+
+- hosts: phl_ios_devices
+  tasks:
+    - name: Diagnostic Commands
+      ios_command:
+        commands: 
+          - show ip interface brief
+          - show version
+      register: output
+  
+  #  - name: Print out the output
+  #    debug: 
+  #      var: output.stdout_lines
+
+  #  - name: Save output to ~/afne/
+  #    copy:
+  #      content: "{{ item + '\n'}}"
+  #      dest: "~/afne/output/diagnostic{{inventory_hostname}}.txt"
+  #    loop: "{{ output.stdout}}"
+    
+    - name: Save output to ~/afne/
+      copy:
+        content: "{{output.stdout[0] + output.stdout[1] }}"
+        dest: "~/afne/output/diag/{{inventory_hostname}}.txt"
