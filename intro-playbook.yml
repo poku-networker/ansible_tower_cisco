@@ -23,4 +23,4 @@
     - name: Save output to ~/afne/
       copy:
         content: "{{output.stdout[0] + output.stdout[1] }}"
-        dest: "~/afne/output/diag/{{inventory_hostname}}.txt"
+        dest: "{{inventory_hostname}}.txt"
