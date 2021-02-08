@@ -1,0 +1,63 @@
+---
+### Playbook to configure Vlan on IOS Device
+
+- hosts: phl-ios-mgmt1
+
+  tasks:
+    - name: Configure access ports
+      cisco.ios.ios_l2_interfaces:
+        config:
+        - name: GigabitEthernet0/0
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet0/1
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet0/2
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet0/3
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet1/0
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet1/1
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet1/2
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet1/3
+          mode: access
+          access:
+            vlan: 599
+        - name: GigabitEthernet2/0
+          mode: trunk
+          trunk:
+            allowed_vlans: 20-22,40
+            native_vlan: 20
+            pruning_vlans: 21
+            encapsulation: dot1q
+        state: merged    
+        
+    - name: Save the config
+      ios_config:
+        save_when: always  
+
+    - name: Diagnostic Commands
+      ios_command:
+        commands: 
+          - show interface status
+      register: output
+
+    - name: Print out the output
+      debug: 
+        var: output.stdout_lines
