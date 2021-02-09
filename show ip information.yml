@@ -11,3 +11,8 @@
         authorize: yes
         commands:
           - show ip int br
+      register: output
+
+    - name: Print out the output
+      debug: 
+        var: output.stdout_lines
