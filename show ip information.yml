@@ -1,6 +1,6 @@
 ---
 - name: Show interface information
-  hosts: "{{ cisco_router }}"
+  hosts: all
   connection: network_cli
   #port: 22
   gather_facts: no
