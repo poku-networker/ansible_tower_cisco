@@ -16,3 +16,4 @@ https://docs.ansible.com/ansible-tower/latest/html/userguide/import_license.html
 
 # AWX:
 https://computingforgeeks.com/how-to-install-ansible-awx-on-ubuntu-linux/
+https://computingforgeeks.com/install-and-configure-ansible-awx-on-centos/
