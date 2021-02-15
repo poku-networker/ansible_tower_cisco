@@ -1,0 +1,49 @@
+---
+   ### Playbook to backup the router Config
+
+- hosts: localhost # Running task on local machine
+  tasks:
+    - name: Get Ansible date/time facts
+      setup: 
+        # ansible localhost -m setup -a "filter=ansible_date_time"
+        filter: "ansible_date_time"
+        gather_subset: "!all"
+    
+    - name: Store DTG information as fact
+      set_fact:
+        DTG: "{{ ansible_date_time.date }}" # .hour or .minute or .time
+        #DTG: "{{ ansible_date_time.iso8601 }}"
+        #DTG: "{{ ansible_date_time.weekday }}"
+    
+    - name: Create Directory using fact {{hostvars.localhost.DTG}}
+      file:
+        path: ~/afne/output/backup/{{ hostvars.localhost.DTG }}
+        state: directory
+  run_once: true
+
+
+- hosts: phl_ios_devices
+  tasks:  
+    - name: Backup Config
+      ios_command:
+        commands: show run
+      register: config
+
+    - name: Save output to ~/afne/output/backup/{{hostvars.localhost.DTG}}
+      copy:
+        content: "{{config.stdout[0]}}"
+        #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
+        dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"
+
+- hosts: phl_csr_devices
+  tasks:
+    - name: Backup Running Config
+      ios_command:
+        commands: sh run
+      register: config
+    
+    - name: Save output to ~/afne/output/backup/{{hostvars.localhost.DTG}}
+      copy:
+        content: "{{config.stdout[0]}}"
+        #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
+        dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"

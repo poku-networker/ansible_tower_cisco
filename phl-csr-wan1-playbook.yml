@@ -1,0 +1,8 @@
+---
+## Playbook to show version on IOS
+
+- hosts: phl-csr-wan1
+  tasks:
+    - name: show version
+      ios_command:
+        commands: show version
