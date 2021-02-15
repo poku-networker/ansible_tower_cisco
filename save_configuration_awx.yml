@@ -1,0 +1,15 @@
+---
+## Playbook to save configuration on IOS
+
+- hosts: all
+  tasks:
+    - name: Save the config
+      ios_config:
+        save_when: always 
+
+#- hosts: phl_csr_devices
+#  tasks:
+#    - name: Save the config
+#      ios_config:
+#        save_when: always
+#
