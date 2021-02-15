@@ -1,7 +1,7 @@
 ---
 ## Playbook to show version on IOS
 
-- hosts: all
+- hosts: phl_ios_devices
   tasks:
     - name: Diagnostic Commands
       ios_command:
@@ -20,7 +20,7 @@
   #      dest: "~/afne/output/diagnostic{{inventory_hostname}}.txt"
   #    loop: "{{ output.stdout}}"
     
-  #  - name: Save output to ~/afne/
-  #    copy:
-  #      content: "{{output.stdout[0] + output.stdout[1] }}"
-  #     dest: "{{inventory_hostname}}.txt"
+    - name: Save output to ~/afne/
+      copy:
+        content: "{{output.stdout[0] + output.stdout[1] }}"
+        dest: "~/afne/output/diag/{{inventory_hostname}}.txt"

@@ -30,4 +30,3 @@
     - name: Save the config
       ios_config:
         save_when: always
-
