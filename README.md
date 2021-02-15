@@ -32,8 +32,11 @@ sudo chmod +x /usr/local/bin/docker-compose
 sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 # Install VS Code in Centos 8
+
 $ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+
 $ sudo vi /etc/yum.repos.d/vscode.repo
+
           *** Insert following VS Code repostory to the file***
 [code]
 name=Visual Studio Code
@@ -43,4 +46,5 @@ gpgcheck=1
 gpgkey=https://packages.microsoft.com/keys/microsoft.asc
 
 $sudo dnf install code
+
 $ code or open application under activity and then VS Code
