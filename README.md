@@ -16,9 +16,13 @@ https://docs.ansible.com/ansible-tower/latest/html/userguide/import_license.html
 
 # AWX - Ubuntu
 https://computingforgeeks.com/how-to-install-ansible-awx-on-ubuntu-linux/
+
 # AWX - Centos
+
 https://computingforgeeks.com/install-and-configure-ansible-awx-on-centos/
-------
+
+-----
+
 Error handling
 In case of the following error:
 
