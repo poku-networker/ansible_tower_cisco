@@ -47,7 +47,7 @@ The offending line appears to be:
     - name: Configure access ports
       ^ here
   
-cisco.ios module needs to be installed within docker container. use 'docker ps' to list the containers and then login to the container by using "docker exec -it <name> /bin/bash" i.e. docker exec -it awx_task /bin/bash.. Once logged into the docker container - type the following command "ansible-galaxy collection install cisco.ios". 
+cisco.ios module needs to be installed within docker container. use 'docker ps' to list the containers and then login to the container by using "docker exec -it 'name' /bin/bash" i.e. docker exec -it awx_task /bin/bash.. Once logged into the docker container - type the following command "ansible-galaxy collection install cisco.ios". 
 
 # Install VS Code in Centos 8
 
