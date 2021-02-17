@@ -1,7 +1,7 @@
 ---
 ## Playbook to show version on IOS
 
-- hosts: phl_ios_devices
+- hosts: phl_ios_mgmt1
   tasks:
     - name: Diagnostic Commands
       ios_command:
