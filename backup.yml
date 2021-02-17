@@ -1,7 +1,9 @@
 ---
    ### Playbook to backup the router Config
 
-- hosts: localhost # Running task on local machine
+- name: Running task on local machine
+  hosts: localhost # Running task on local machine
+  
   tasks:
     - name: Get Ansible date/time facts
       setup: 
@@ -22,7 +24,9 @@
   run_once: true
 
 
-- hosts: phl_ios_devices
+- name: Save Configuration for IOS Devices
+  hosts: phl_ios_devices
+  
   tasks:  
     - name: Backup Config
       ios_command:
@@ -35,7 +39,9 @@
         #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
         dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"
 
-- hosts: phl_csr_devices
+- name: Save Configuration for CSR Devices
+  hosts: phl_csr_devices
+  
   tasks:
     - name: Backup Running Config
       ios_command:
