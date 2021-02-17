@@ -71,7 +71,9 @@ $sudo dnf install code
 
 $ code or open application under activity and then VS Code
 
-# Ansible Documentation on CISCO Configuration 
+# Ansible Documentation on Different Cisco Modules
 
 https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_config_module.html
+
+https://docs.ansible.com/ansible/latest/collections/cisco/ios/ios_facts_module.html
 
