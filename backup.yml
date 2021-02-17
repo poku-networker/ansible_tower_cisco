@@ -29,7 +29,7 @@
   gather_facts: no
   
   tasks:  
-    - name: Backup Config
+    - name: Backup Running Config
       ios_command:
         commands: show run
       register: config
