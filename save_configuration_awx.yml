@@ -1,15 +1,11 @@
 ---
 ## Playbook to save configuration on IOS
 
-- hosts: all
+- name: Copy Running Config to Start-up Config
+  hosts: all
+  gather_facts: no
+  
   tasks:
     - name: Save the config
       ios_config:
-        save_when: always 
-
-#- hosts: phl_csr_devices
-#  tasks:
-#    - name: Save the config
-#      ios_config:
-#        save_when: always
-#
+        save_when: always
