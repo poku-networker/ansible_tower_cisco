@@ -40,6 +40,8 @@
       ios_command:
         commands: 
           - show interface status
+          - show ip interface brief
+          - show vlan id 599
       register: output
 
     - name: Print out the output
