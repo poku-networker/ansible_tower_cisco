@@ -1,9 +1,12 @@
 ---
 ## Playbook to show version on IOS
 
-- hosts: phl_ios_mgmt1
+- name: Collect Diagnostic Output
+  hosts: phl_ios_mgmt1
+  gather_facts: no
+  
   tasks:
-    - name: Diagnostic Commands
+    - name: Run Diagnostic Commands
       ios_command:
         commands: 
           - show ip interface brief
