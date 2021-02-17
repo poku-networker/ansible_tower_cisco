@@ -1,7 +1,7 @@
 ---
 ### Playbook to configure Vlan on IOS Device
 
-- hosts: phl-ios-mgmt1
+- hosts: phl-ios-mgmt1-dhcp
 
   tasks:
     - name: Configure access ports
@@ -23,8 +23,14 @@
         lines:
         - switchport trunk encapsulation dot1q
         - switchport mode trunk
-        - switchport trunk allowed vlan 20-22,40
+        - switchport trunk allowed vlan 20-22,40,599
         parents: interface GigabitEthernet2/1
+        
+    - name: Unshut SVI 599
+      cisco.ios.ios_config:
+        lines:
+        - no shutdown
+        parents: interface Vlan 599
         
     - name: Save the config
       ios_config:
