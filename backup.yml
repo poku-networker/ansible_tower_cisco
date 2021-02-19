@@ -1,28 +1,28 @@
 ---
    ### Playbook to backup the router Config
 
-#- name: Running task on local machine
-#  hosts: localhost # Running task on local machine
-#  
-#  tasks:
-#    - name: Get Ansible date/time facts
-#      setup: 
-#        # ansible localhost -m setup -a "filter=ansible_date_time"
-#        filter: "ansible_date_time"
-#        gather_subset: "!all"
-#    
-#    - name: Store DTG information as fact
-#      set_fact:
-#        DTG: "{{ ansible_date_time.date }}" # .hour or .minute or .time
-#        #DTG: "{{ ansible_date_time.iso8601 }}"
-#        #DTG: "{{ ansible_date_time.weekday }}"
-#    
-#    - name: Create Directory using fact {{hostvars.localhost.DTG}}
-#      file:
-#        path: ~/afne/output/backup/{{ hostvars.localhost.DTG }}
-#        state: directory
-#  run_once: true
-#
+- name: Running task on local machine
+  hosts: localhost # Running task on local machine
+  
+  tasks:
+    - name: Get Ansible date/time facts
+      setup: 
+        # ansible localhost -m setup -a "filter=ansible_date_time"
+        filter: "ansible_date_time"
+        gather_subset: "!all"
+    
+    - name: Store DTG information as fact
+      set_fact:
+        DTG: "{{ ansible_date_time.date }}" # .hour or .minute or .time
+        #DTG: "{{ ansible_date_time.iso8601 }}"
+        #DTG: "{{ ansible_date_time.weekday }}"
+    
+    - name: Create Directory using fact {{hostvars.localhost.DTG}}
+      file:
+        path: ~/afne/output/backup/{{ hostvars.localhost.DTG }}
+        state: directory
+  run_once: true
+
 
 - name: Save Configuration for IOS Devices
   hosts: phl_ios_devices
