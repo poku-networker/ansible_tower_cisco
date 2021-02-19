@@ -3,6 +3,7 @@
 
 - name: Running task on local machine
   hosts: localhost # Running task on local machine
+  gather_facts: no
   
   tasks:
     - name: Get Ansible date/time facts
