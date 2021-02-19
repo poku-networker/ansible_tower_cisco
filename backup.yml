@@ -39,8 +39,8 @@
       copy:
         content: "{{config.stdout[0]}}"
         #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
-        #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"
-        dest: "~/afne/output/backup/{{inventory_hostname}}.txt"
+        dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"
+        #dest: "~/afne/output/backup/{{inventory_hostname}}.txt"
 
 
 - name: Save Configuration for CSR Devices
@@ -57,6 +57,6 @@
       copy:
         content: "{{config.stdout[0]}}"
         #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}-{{hostvars.localhost.DTG}}.txt"
-        #dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"
-        dest: "~/afne/output/backup/{{inventory_hostname}}.txt"
+        dest: "~/afne/output/backup/{{hostvars.localhost.DTG}}/{{inventory_hostname}}.txt"
+        #dest: "~/afne/output/backup/{{inventory_hostname}}.txt"
 
