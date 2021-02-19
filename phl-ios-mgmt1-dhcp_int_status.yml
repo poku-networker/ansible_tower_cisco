@@ -1,0 +1,15 @@
+---
+### Playbook to configure Vlan on IOS Device
+
+- hosts: phl-ios-mgmt1-dhcp
+
+  tasks:
+    - name: Diagnostic Commands
+      ios_command:
+        commands: 
+          - show interface status
+      register: output
+
+    - name: Print out the output
+      debug: 
+        var: output.stdout_lines
