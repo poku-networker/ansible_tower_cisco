@@ -27,7 +27,7 @@
 
 - name: Save Configuration for IOS Devices
   hosts: phl_ios_devices
-  #gather_facts: no
+  gather_facts: no
   
   tasks:  
     - name: Backup Running Config
@@ -45,7 +45,7 @@
 
 - name: Save Configuration for CSR Devices
   hosts: phl_csr_devices
-  #gather_facts: no
+  gather_facts: no
   
   tasks:
     - name: Backup Running Config
