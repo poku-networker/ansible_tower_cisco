@@ -10,7 +10,7 @@
     
     - name: Configure multiple lines of code from text file
       ios_config:
-        src: "~/afne/configs/ntp.txt"
+        src: "~/afne/configuration/ntp.txt"
     
     - name: Save the config
       ios_config:
@@ -25,7 +25,7 @@
     
     - name: Configure multiple lines of code from text file
       ios_config:
-        src: "~/afne/configs/config1.txt"
+        src: "~/afne/configuration/ntp.txt"
     
     - name: Save the config
       ios_config:
