@@ -2,7 +2,7 @@
 ## Playbook to show version on IOS
 
 - name: Collect Diagnostic Output
-  hosts: phl-ios-mgmt1
+  hosts: all
   gather_facts: no
   
   tasks:
