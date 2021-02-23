@@ -1,27 +1,27 @@
 ---
 ### Playbook to configure IOS Device
 
-- hosts: [phl_ios_devices]
+- hosts: phl_ios_devices
 
   tasks:
     - name: Configure a single command
       ios_config: 
-        lines: ntp server 9.9.9.9
+        lines: no ntp server 9.9.9.9
     
     - name: Configure multiple lines of code from text file
       ios_config:
-        src: "~/afne/configs/config1.txt"
+        src: "~/afne/configs/ntp.txt"
     
     - name: Save the config
       ios_config:
         save_when: always
 
-- hosts: [phl_csr_devices]
+- hosts: phl_csr_devices
 
   tasks:
     - name: Configure a single command
       ios_config: 
-        lines: ntp server 9.9.9.9
+        lines: no ntp server 9.9.9.9
     
     - name: Configure multiple lines of code from text file
       ios_config:
