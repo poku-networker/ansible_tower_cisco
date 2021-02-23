@@ -6,12 +6,19 @@
   gather_facts: no
   
   tasks:
-    - name: Run Diagnostic Commands
+    - name: Run Two Diagnostic Commands
       ios_command:
         commands: 
           - show ip interface brief
           - show version
       register: output
+    
+    #- name: Run Multiple Diagnostic Commands
+    #  ios_command: 
+    #    src: "~/afne/configuration/ntp.txt"
+    #  register: mul_output
+       
+    
   
   #  - name: Print out the output
   #    debug: 
@@ -22,3 +29,7 @@
         content: "{{output.stdout[0] + output.stdout[1] }}"
         dest: "~/afne/output/diag/{{inventory_hostname}}.txt"
         
+   # - name: Save output to ~/afne/ for multiple Commands
+   #  copy:
+   #    content: "{{mul_output.stdout[0] + mul_output.stdout[1] }}"
+   #    dest: "~/afne/output/diag/{{inventory_hostname}}.txt"
