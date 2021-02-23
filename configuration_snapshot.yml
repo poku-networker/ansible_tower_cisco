@@ -26,7 +26,7 @@
 
 
 - name: Save Configuration for IOS Devices
-  hosts: phl_ios_devices
+  hosts: phl_ios_devices   # In AWX this is a group within Cisco Devices
   gather_facts: no
   
   tasks:  
@@ -44,7 +44,7 @@
 
 
 - name: Save Configuration for CSR Devices
-  hosts: phl_csr_devices
+  hosts: phl_csr_devices       # In AWX this is a group within Cisco Devices
   gather_facts: no
   
   tasks:
