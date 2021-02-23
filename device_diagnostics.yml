@@ -15,7 +15,7 @@
     
     #- name: Run Multiple Diagnostic Commands
     #  ios_command: 
-    #    src: "~/afne/configuration/ntp.txt"
+    #    src: "~/afne/configuration/diagnostic_commands.txt"
     #  register: mul_output
        
     
