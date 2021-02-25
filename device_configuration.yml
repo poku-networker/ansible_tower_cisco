@@ -10,7 +10,7 @@
       ios_config: 
         lines: no ntp server 9.9.9.9
     
-    - name: Configure multiple lines of code from text file
+    - name: Configure multiple lines of commands from text file
       ios_config:
         src: "~/afne/configuration/ntp.txt"
     
@@ -27,7 +27,7 @@
       ios_config: 
         lines: no ntp server 9.9.9.9
     
-    - name: Configure multiple lines of code from text file
+    - name: Configure multiple lines of commands from text file
       ios_config:
         src: "~/afne/configuration/ntp.txt"
     
