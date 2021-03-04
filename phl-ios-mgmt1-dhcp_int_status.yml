@@ -9,6 +9,7 @@
       ios_command:
         commands: 
           - show interface status
+          - show ip int br
       register: output
 
     - name: Print out the output
