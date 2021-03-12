@@ -11,7 +11,7 @@ tasks:
           #lines: ntp server 9.9.9.9
     
   - name: Configure multiple lines of commands from jinja file
-      ios_config:
+    ios_config:
       src: "~/afne/configuration/ntp.j2"
     
         # - name: Save the config
