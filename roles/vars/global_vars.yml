@@ -1,3 +1,4 @@
+---
 # Global Config Variable
 ntp:
   server1: 10.10.10.10
