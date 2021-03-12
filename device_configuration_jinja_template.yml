@@ -14,7 +14,7 @@
 #     ios_config:
 #       src: "~/afne/configuration/ntp.txt"
 #   
-   - name: Configure from Jinja2 Template
+    - name: Configure from Jinja2 Template
      include_role:
        tasks_from: configure_from_jinja2_template.yml
        vars_from: global_vars.yml
