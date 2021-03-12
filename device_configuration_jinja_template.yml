@@ -17,7 +17,7 @@
     - name: Configure from Jinja2 Template
       include_role:
         name: awx_eveng_lab
-        tasks_from: configure_from_jinja2_template.yml
+        tasks_from: main.yml
         vars_from: global_vars.yml
     
     - name: Save the config
