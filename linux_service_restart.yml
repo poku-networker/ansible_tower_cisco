@@ -1,0 +1,29 @@
+---
+# Playbokk to restart various services on Linux Hosts
+
+- hosts: linux_devices
+  tasks:
+
+    - name: Pre-Change Collection --> "Show Cron Service status"
+      command: systemctl status cron.service
+      register: service_status_output
+    
+    - name: Pre-Change Print-out --> "Show Cron Service status"
+      debug: 
+        msg: "{{ service_status_output.stdout_lines[2] }}"
+    
+    - name: Restart Cron Service on Linux Hosts
+      ansible.builtin.service:
+        name: cron
+        state: restarted
+      #command: service cron --full-restart
+      become: yes
+      become_method: sudo
+  
+    - name: Post-Change Collection --> "Show Cron Service status"
+      command: systemctl status cron.service
+      register: service_status_output
+    
+    - name: Post-Change Print-out --> "Show Cron Service status"
+      debug: 
+        msg: "{{ service_status_output.stdout_lines[2] }}"
