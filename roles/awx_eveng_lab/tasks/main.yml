@@ -5,14 +5,14 @@
 #  hosts: phl_ios_devices
 #  gather_facts: no
 
-  tasks:
+tasks:
           #  - name: Configure a single command
           #ios_config: 
           #lines: ntp server 9.9.9.9
     
-    - name: Configure multiple lines of commands from jinja file
+  - name: Configure multiple lines of commands from jinja file
       ios_config:
-        src: "~/afne/configuration/ntp.j2"
+      src: "~/afne/configuration/ntp.j2"
     
         # - name: Save the config
         #ios_config:
