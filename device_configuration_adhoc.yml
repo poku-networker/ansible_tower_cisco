@@ -14,18 +14,21 @@
       register: adhoc_config_output
       with_items:
        - "{{ adhoc_config }}"
-
-    - set_fact:
-        adhoc_config_fact: "{{ adhoc_config_output.stdout[0] }}"
     
-    - name: Configure a single command
-      ios_config: 
-        lines: "{{ adhoc_config }}"
-      when: adhoc_config_fact != '"{{ adhoc_config }}"'
+    - name: Print out the output
+      debug: 
+        var: adhoc_config_output.stdout_lines
+    #- set_fact:
+    #    adhoc_config_fact: "{{ adhoc_config_output.stdout[0] }}"
     
-    - name: Save the config
-      ios_config:
-        save_when: changed   
+    #- name: Configure a single command
+    #  ios_config: 
+    #    lines: "{{ adhoc_config }}"
+    #  when: adhoc_config_fact != '"{{ adhoc_config }}"'
+    
+    #- name: Save the config
+     # ios_config:
+     #   save_when: changed   
 
 #- name: Configuring CSR Devices
 #  hosts: phl_csr_devices
