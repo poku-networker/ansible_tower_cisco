@@ -14,15 +14,15 @@
 #     ios_config:
 #       src: "~/afne/configuration/ntp.txt"
 #   
-#    - name: Configure from Jinja2 Template
-#      include_role:
-#        name: awx_eveng_lab
-#        tasks_from: main.yml
-#        vars_from: global_vars
+#   - name: Configure from Jinja2 Template
+#     include_role:
+#       name: awx_eveng_lab
+#       tasks_from: main.yml
+#       vars_from: global_vars
     
-#    - name: Save the config
-#      ios_config:
-#        save_when: always
+#   - name: Save the config
+#     ios_config:
+#       save_when: always
 #
 #- name: Configuring CSR Devices
 #  hosts: phl_csr_devices
