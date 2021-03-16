@@ -16,7 +16,7 @@
        - "{{ adhoc_config }}"
 
     - set_fact:
-        adhoc_config_fact: "{{ adhoc_config_output.stdout_lines }}"
+        adhoc_config_fact: "{{ adhoc_config_output.stdout[0] }}"
     
     - name: Configure a single command
       ios_config: 
