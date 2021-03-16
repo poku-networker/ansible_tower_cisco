@@ -8,7 +8,7 @@
   tasks:
     - name: Configure a single command
       ios_config: 
-        lines: {{ adhoc_config }}
+        lines: "{ adhoc_config }}"
    
 #    - name: Configure multiple lines of commands from text file
 #      ios_config:
