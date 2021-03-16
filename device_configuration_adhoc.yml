@@ -30,17 +30,17 @@
       ios_config:
         save_when: changed   
 
-- name: Configuring CSR Devices
-  hosts: phl_csr_devices
-  gather_facts: no
-
-  tasks:
-    - name: Configure a single command
-      ios_config: 
-        lines: "{{ adhoc_config }}"
-
-    - name: Save the config
-      ios_config:
-        save_when: changed
+#- name: Configuring CSR Devices
+#  hosts: phl_csr_devices
+#  gather_facts: no
+#
+#  tasks:
+#    - name: Configure a single command
+#      ios_config: 
+#        lines: "{{ adhoc_config }}"
+#
+#    - name: Save the config
+#      ios_config:
+#        save_when: changed
         
 ...
