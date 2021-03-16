@@ -10,41 +10,14 @@
       ios_config: 
         lines: "{{ adhoc_config }}"
    
-#    - name: Configure multiple lines of commands from text file
-#      ios_config:
-#        src: "~/afne/configuration/ntp.txt"
-#   
-#    - name: Configure from Jinja2 Template
-#      include_role:
-#        name: awx_eveng_lab
-#        tasks_from: ntp_jinja2.yml
-#        vars_from: global_vars
-#    
-#    - name: Save the config
-#      ios_config:
-#        save_when: always
 #
-#- name: Configuring CSR Devices
-#  hosts: phl_csr_devices
-#  gather_facts: no
-#
-#  tasks:
-#    - name: Configure a single command
-#      ios_config: 
-#        lines: ntp server 9.9.9.9
-#    
-#    - name: Configure multiple lines of commands from text file
-#      ios_config:
-#        src: "~/afne/configuration/ntp.txt"
-#       
-#    - name: Configure from Jinja2 Template
-#      include_role:
-#        name: awx_eveng_lab
-#        tasks_from: ntp_jinja2.yml
-#        vars_from: global_vars  
-#    
-#    - name: Save the config
-#      ios_config:
-#        save_when: always
+- name: Configuring CSR Devices
+  hosts: phl_csr_devices
+  gather_facts: no
+
+  tasks:
+    - name: Configure a single command
+      ios_config: 
+        lines: "{{ adhoc_config }}"
 
 ...
