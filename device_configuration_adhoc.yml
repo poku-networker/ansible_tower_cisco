@@ -18,6 +18,10 @@
     - name: Print out the output
       debug: 
         var: adhoc_config_output.stdout_lines
+     
+    - name: Print out the output
+      debug: 
+        var: adhoc_config_output.stdout[0]
     #- set_fact:
     #    adhoc_config_fact: "{{ adhoc_config_output.stdout[0] }}"
     
