@@ -2,7 +2,7 @@
 ### Playbook to configure IOS Device
 
 - name: Configuring IOS Devices
-  #hosts: phl_ios_devices
+  hosts: phl_ios_devices
   gather_facts: no
 
   tasks:
@@ -34,3 +34,4 @@
         #- name: Save the config
         #ios_config:
         #save_when: always
+...
