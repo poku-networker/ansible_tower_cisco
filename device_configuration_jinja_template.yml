@@ -4,17 +4,16 @@
 #- name: Configuring IOS Devices
 #  hosts: phl_ios_devices
 #  gather_facts: no
-
-  tasks:
+tasks:
 #   - name: Configure a single command
 #     ios_config: 
 #       lines: ntp server 9.9.9.9
    
-#   - name: Configure multiple lines of commands from text file
-#     ios_config:
-#       src: "~/afne/configuration/ntp.txt"
-#   
-    - name: Configure from Jinja2 Template
+  - name: Configure multiple lines of commands from text file
+      ios_config:
+        src: "~/afne/configuration/ntp.txt"
+   
+  - name: Configure from Jinja2 Template
       include_role:
         name: awx_eveng_lab
         tasks_from: main.yml
