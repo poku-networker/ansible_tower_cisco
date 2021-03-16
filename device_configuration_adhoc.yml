@@ -10,7 +10,7 @@
     
     - name: Find if current config has "{{ adhoc_config }}"
       ios_command:
-        commands: 'show run | inc "{{ item }}" '
+        commands: 'show run | inc "{{ item.split().2 }}" '
       register: adhoc_config_output
       with_items:
        - "{{ adhoc_config }}"
