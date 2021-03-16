@@ -1,8 +1,5 @@
 ---
 ### Playbook to configure IOS Device
-
-
-
   
 - name: Configuring IOS Devices if Config is not already present
   #hosts: phl_ios_devices
