@@ -1,9 +1,9 @@
 ---
 ### Playbook to configure IOS Device
 
-- name: Configuring IOS Devices
-  hosts: phl_ios_devices
-  gather_facts: no
+#- name: Configuring IOS Devices
+#  hosts: phl_ios_devices
+#  gather_facts: no
 
   tasks:
 #   - name: Configure a single command
