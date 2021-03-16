@@ -2,6 +2,6 @@
 
 - name: Configure multiple lines of commands from jinja file
   ios_config:
-    src: "~/afne/configuration/ntp.j2"
+    src: "../configs/ntp.j2"
 
 ...
