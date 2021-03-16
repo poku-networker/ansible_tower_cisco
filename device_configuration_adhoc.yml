@@ -5,7 +5,8 @@
 
   
 - name: Configuring IOS Devices if Config is not already present
-  hosts: phl_ios_devices
+  #hosts: phl_ios_devices
+  hosts: phl_ios_mgmt1
   gather_facts: no
   
   tasks:
