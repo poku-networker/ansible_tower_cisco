@@ -17,6 +17,7 @@
       - Interface GigabitEthernet0/3
       - interface GigabitEthernet1/0
       - interface GigabitEthernet1/1
+      - interface GigabitEthernet3/2
 
     - name: Configure trunk ports
       cisco.ios.ios_config:
