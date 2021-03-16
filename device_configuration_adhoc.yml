@@ -13,7 +13,7 @@
         commands: 'show run | inc "{{ item.split().2 }}" '
       register: adhoc_config_output
       with_items:
-       - {{ adhoc_config }}
+       - "{{ adhoc_config }}"
     
     - name: Print out the output
       debug: 
