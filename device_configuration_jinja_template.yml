@@ -18,7 +18,7 @@
       include_role:
         name: awx_eveng_lab
         tasks_from: main.yml
-        vars_from: global_vars.yml
+        vars_from: global_vars
     
     - name: Save the config
       ios_config:
