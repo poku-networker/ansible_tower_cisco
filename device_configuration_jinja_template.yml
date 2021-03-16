@@ -3,7 +3,7 @@
 
 #- name: Configuring IOS Devices
 - hosts: phl_ios_devices
-#  gather_facts: no
+  gather_facts: no
   tasks:
 #   - name: Configure a single command
 #     ios_config: 
