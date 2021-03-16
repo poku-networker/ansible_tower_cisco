@@ -1,14 +1,29 @@
 ---
 ### Playbook to configure IOS Device
 
-- name: Configuring IOS Devices
+
+
+  
+- name: Configuring IOS Devices if Config is not already present
   hosts: phl_ios_devices
   gather_facts: no
   
   tasks:
+    
+    - name: Find if current config has "{{ adhoc_config }}"
+      ios_command:
+        commands: 'show run | inc "{{ item }}" '
+      register: adhoc_config_output
+      with_items:
+       - "{{ adhoc_config }}"
+
+    - set_fact:
+      adhoc_config_fact: "{{ adhoc_config_output.stdout_lines }}"
+    
     - name: Configure a single command
       ios_config: 
         lines: "{{ adhoc_config }}"
+      when: adhoc_config_fact != '"{{ adhoc_config }}"'
     
     - name: Save the config
       ios_config:
