@@ -2,17 +2,19 @@
 ### Playbook to configure IOS Device
 
 - name: Configuring IOS Devices
-  hosts: phl_ios_devices
-  gather_facts: no
+  #hosts: phl_ios_devices
+  #gather_facts: no
 
   tasks:
-#   - name: Configure a single command
-#     ios_config: 
-#       lines: ntp server 9.9.9.9
+    - name: Configure from Jinja2 Template
+      include_role:
+        name: awx_eveng_lab
+        tasks_from: main.yml
+        vars_from: global_vars
     
-  - name: Configure multiple lines of commands from jinja file
-    ios_config:
-      src: "~/afne/configuration/ntp.j2"
+    - name: Configure multiple lines of commands from jinja file
+      ios_config:
+        src: "~/afne/configuration/ntp.j2"
     
         # - name: Save the config
         #ios_config:
