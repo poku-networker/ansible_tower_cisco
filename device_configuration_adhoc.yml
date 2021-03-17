@@ -22,20 +22,15 @@
       when: >
         ( item in sh_run_output.stdout|string)
       with_items: "{{ adhoc_config }}"
-    
-    - name: Print out the output
-      debug: 
-        var: adhoc_config_output.stdout_lines
         
+    - name: Configure a single/multiple lines of command
+      ios_config: 
+        lines: "{{ item }}"
+      with_items: "{{ adhoc_config }}"
     
-    #- name: Configure a single command
-    #  ios_config: 
-    #    lines: "{{ adhoc_config }}"
-    #  when: adhoc_config_fact != '"{{ adhoc_config }}"'
-    
-    #- name: Save the config
-     # ios_config:
-     #   save_when: changed   
+    - name: Save the config
+      ios_config:
+        save_when: changed   
 
 #- name: Configuring CSR Devices
 #  hosts: phl_csr_devices
