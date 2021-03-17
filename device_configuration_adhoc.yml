@@ -1,7 +1,7 @@
 ---
 ### Playbook to configure IOS Device
   
-- name: Configuring IOS Devices if Config is not already present
+- name: Configuring IOS Devices
   #hosts: phl_ios_devices
   hosts: phl-ios-mgmt1
   gather_facts: no
@@ -13,19 +13,21 @@
         commands: show run
       register: sh_run_output
     
+    - set_fact:
+        adhoc_config_fact: "{{ adhoc_config }}"
+    
     - name: Find if Running Config already has "{{ adhoc_config }}" - Step II
       fail:
-        msg: " {{ adhoc_config }} is already present on the device"
+        msg: " This configuration -->> << {{ adhoc_config }} >>  is already present on the device"
       when: >
-        ("{{ adhoc_config }}" in sh_run_output.stdout|string)
+        #("{{ adhoc_config }}" in sh_run_output.stdout|string)
+        (adhoc_config_fact in sh_run_output.stdout|string)
       with_items: "{{ adhoc_config }}"
     
     - name: Print out the output
       debug: 
         var: adhoc_config_output.stdout_lines
         
-    #- set_fact:
-    #    adhoc_config_fact: "{{ adhoc_config_output.stdout[0] }}"
     
     #- name: Configure a single command
     #  ios_config: 
