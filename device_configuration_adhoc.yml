@@ -15,7 +15,7 @@
     
     - name: Find if Running Config already has "{{ adhoc_config }}" - Step II
       fail:
-        msg: " "{{ adhoc_config }}" is already present on the device"
+        msg: " {{ adhoc_config }} is already present on the device"
       when: >
         ("{{ adhoc_config }}" in sh_run_output.stdout|string)
       with_items: "{{ adhoc_config }}"
