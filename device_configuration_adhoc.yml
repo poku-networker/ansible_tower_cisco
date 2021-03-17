@@ -2,8 +2,7 @@
 ### Playbook to configure IOS Device
   
 - name: Configuring IOS Devices
-  #hosts: phl_ios_devices
-  hosts: phl-ios-mgmt1
+  hosts: phl_ios_devices
   gather_facts: no
   
   tasks:
@@ -13,8 +12,8 @@
         commands: show run
       register: sh_run_output
     
-    - set_fact:
-        adhoc_config_fact: "{{ adhoc_config }}"
+    #- set_fact:
+    #    adhoc_config_fact: "{{ adhoc_config }}"
     
     - name: Find if Running Config already has "{{ adhoc_config }}" - Step II
       fail:
@@ -32,17 +31,34 @@
       ios_config:
         save_when: changed   
 
-#- name: Configuring CSR Devices
-#  hosts: phl_csr_devices
-#  gather_facts: no
-#
-#  tasks:
-#    - name: Configure a single command
-#      ios_config: 
-#        lines: "{{ adhoc_config }}"
-#
-#    - name: Save the config
-#      ios_config:
-#        save_when: changed
+- name: Configuring CSR Devices
+  hosts: phl_csr_devices
+  gather_facts: no
+
+  tasks:
+    
+    - name: Find if Running config already has "{{ adhoc_config }}" - Step I
+      ios_command:
+        commands: show run
+      register: sh_run_output
+    
+    #- set_fact:
+    #    adhoc_config_fact: "{{ adhoc_config }}"
+    
+    - name: Find if Running Config already has "{{ adhoc_config }}" - Step II
+      fail:
+        msg: " This configuration -->> << '{{ item }}' >>  is already present on the device"
+      when: >
+        ( item in sh_run_output.stdout|string)
+      with_items: "{{ adhoc_config }}"
+        
+    - name: Configure a single/multiple lines of command
+      ios_config: 
+        lines: "{{ item }}"
+      with_items: "{{ adhoc_config }}"
+    
+    - name: Save the config
+      ios_config:
+        save_when: changed  
         
 ...
