@@ -20,8 +20,8 @@
       fail:
         msg: " This configuration -->> << {{ adhoc_config }} >>  is already present on the device"
       when: >
-        #("{{ adhoc_config }}" in sh_run_output.stdout|string)
-        (adhoc_config_fact in sh_run_output.stdout|string)
+        (item in sh_run_output.stdout|string)
+        #(adhoc_config_fact in sh_run_output.stdout|string)
       with_items: "{{ adhoc_config }}"
     
     - name: Print out the output
