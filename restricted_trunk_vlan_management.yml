@@ -60,8 +60,8 @@
     - name: Configure trunk ports
       cisco.ios.ios_config:
         lines:
-        #- switchport trunk allowed vlan "{{ action_item }}" "{{ vlan_id }}"
-        - switchport trunk allowed vlan remove "{{ vlan_id }}"
+        - switchport trunk allowed vlan "{{ action_item | trim }}" "{{ vlan_id }}"
+        #- switchport trunk allowed vlan remove "{{ vlan_id }}"
         parents: interface GigabitEthernet0/1
         
 #   - name: Unshut SVI 599
