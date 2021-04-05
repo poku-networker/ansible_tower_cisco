@@ -1,7 +1,10 @@
 ---
 ### Playbook to configure Vlan on IOS Device
 
-- hosts: phl-ios-sw1
+- name: Playbook to Configure Restricted Trunk ports on phl-ios-sw1 
+  hosts: phl-ios-sw1
+  gather_facts: no
+
 
   tasks:
 #    - name: Configure access ports
