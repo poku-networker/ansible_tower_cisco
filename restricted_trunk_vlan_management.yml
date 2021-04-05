@@ -1,0 +1,50 @@
+---
+### Playbook to configure Vlan on IOS Device
+
+- hosts: phl-ios-mgmt1-dhcp
+
+  tasks:
+    - name: Configure access ports
+      cisco.ios.ios_config:
+        lines:
+        - switchport mode access
+        - switchport access vlan 599
+        parents: '{{ item }}'
+      with_items:
+      - interface GigabitEthernet0/0
+      - interface GigabitEthernet0/1
+      - Interface GigabitEthernet0/2
+      - Interface GigabitEthernet0/3
+      - interface GigabitEthernet1/0
+      - interface GigabitEthernet1/1
+      - interface GigabitEthernet3/2
+
+    - name: Configure trunk ports
+      cisco.ios.ios_config:
+        lines:
+        - switchport trunk encapsulation dot1q
+        - switchport mode trunk
+        - switchport trunk allowed vlan 20-22,40,599
+        parents: interface GigabitEthernet2/1
+        
+    - name: Unshut SVI 599
+      cisco.ios.ios_config:
+        lines:
+        - no shutdown
+        parents: interface Vlan 599
+        
+    - name: Save the config
+      ios_config:
+        save_when: always  
+
+    - name: Diagnostic Commands
+      ios_command:
+        commands: 
+          - show interface status
+          - show ip interface brief
+          - show vlan id 599
+      register: output
+
+    - name: Print out the output
+      debug: 
+        var: output.stdout_lines
