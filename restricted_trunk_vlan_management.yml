@@ -65,14 +65,14 @@
         lines:
         - switchport trunk allowed vlan add "{{ vlan_id }}"
         parents: interface GigabitEthernet0/1
-      when: ("{{ action_item | replace('\n', '') }}" == "add")
+      when: ("action_item | replace('\n', '')" == "add")
     
     - name: Remove VLAN from trunk ports
       cisco.ios.ios_config:
         lines:
         - switchport trunk allowed vlan remove "{{ vlan_id }}"
         parents: interface GigabitEthernet0/1
-      when: ("{{ action_item | replace('\n', '') }}" == "remove")
+      when: ("action_item | replace('\n', '')" == "remove")
 #   - name: Unshut SVI 599
 #     cisco.ios.ios_config:
 #       lines:
