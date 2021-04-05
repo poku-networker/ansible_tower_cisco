@@ -1,37 +1,73 @@
 ---
 ### Playbook to configure Vlan on IOS Device
 
-- hosts: phl-ios-mgmt1-dhcp
+- hosts: phl-ios-sw1
 
   tasks:
-    - name: Configure access ports
-      cisco.ios.ios_config:
-        lines:
-        - switchport mode access
-        - switchport access vlan 599
-        parents: '{{ item }}'
-      with_items:
-      - interface GigabitEthernet0/0
-      - interface GigabitEthernet0/1
-      - Interface GigabitEthernet0/2
-      - Interface GigabitEthernet0/3
-      - interface GigabitEthernet1/0
-      - interface GigabitEthernet1/1
-      - interface GigabitEthernet3/2
+#    - name: Configure access ports
+#      cisco.ios.ios_config:
+#        lines:
+#        - switchport mode access
+#        - switchport access vlan 599
+#        parents: '{{ item }}'
+#      with_items:
+#      - interface GigabitEthernet0/0
+#      - interface GigabitEthernet0/1
+#      - Interface GigabitEthernet0/2
+#      - Interface GigabitEthernet0/3
+#      - interface GigabitEthernet1/0
+#      - interface GigabitEthernet1/1
+#      - interface GigabitEthernet3/2
+
+    - name: Find if Interface Running config already has "switchport trunk allowed vlan" - Step I
+      ios_command:
+        commands: show run interface gi0/1
+      register: sh_run_output
+    
+    - name: Find if Interface Running Config has "switchport trunk allowed vlan" Configured - Step II
+      fail:
+        msg: " This configuration -->> << switchport trunk allowed vlan >>  is not present on the interface"
+      when: ("switchport trunk allowed vlan" not in sh_run_output.stdout|string)
+      
+# If the variable is not a list, you can convert it into a list, with either stdout_lines or with variable.stdout.split() For ex:sh_run_output.stdout_lines
+#    - name: Add home dirs to the backup spooler
+#      ansible.builtin.file:
+#        path: /mnt/bkspool/{{ item }}
+#        src: /home/{{ item }}
+#        state: link
+#      loop: "{{ home_dirs.stdout_lines }}"
+#      # same as loop: "{{ home_dirs.stdout.split() }}"
+# - ios_command:
+#     commands: show run | sec ospf
+#     provider: "{{cli}}"
+#   register: output
+# - debug:
+#     msg: "{{output.stdout_lines}}"
+#   when: output | search("distribute-list") 
+# when: output.stdout | join('') | search('distribute-list')
+# you need intermediate join here, because for ios-family modules stdout is a list of strings, and stdout_lines is a list of lists 
+# (whereas for usual command module stdout is a string and stdout_lines is a list of strings).
+        
+#    - name: Configure a single/multiple lines of command
+#      ios_config: 
+#        lines: "{{ item }}"
+#      with_items: "{{ adhoc_config }}"
+    
+#   - name: Save the config
+#     ios_config:
+#       save_when: changed   
 
     - name: Configure trunk ports
       cisco.ios.ios_config:
         lines:
-        - switchport trunk encapsulation dot1q
-        - switchport mode trunk
-        - switchport trunk allowed vlan 20-22,40,599
-        parents: interface GigabitEthernet2/1
+        - switchport trunk allowed vlan add 599
+        parents: interface GigabitEthernet0/1
         
-    - name: Unshut SVI 599
-      cisco.ios.ios_config:
-        lines:
-        - no shutdown
-        parents: interface Vlan 599
+#   - name: Unshut SVI 599
+#     cisco.ios.ios_config:
+#       lines:
+#       - no shutdown
+#       parents: interface Vlan 599
         
     - name: Save the config
       ios_config:
@@ -40,9 +76,8 @@
     - name: Diagnostic Commands
       ios_command:
         commands: 
-          - show interface status
-          - show ip interface brief
-          - show vlan id 599
+          - show interface gi0/1 status
+          - show run interface gi0/1
       register: output
 
     - name: Print out the output
