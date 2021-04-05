@@ -60,7 +60,7 @@
     - name: Configure trunk ports
       cisco.ios.ios_config:
         lines:
-        - switchport trunk allowed vlan "{{ action_item | trim }}" "{{ vlan_id }}"
+        - switchport trunk allowed vlan "{{ action_item | replace('\n', '') }}" "{{ vlan_id }}"
         #- switchport trunk allowed vlan remove "{{ vlan_id }}"
         parents: interface GigabitEthernet0/1
         
