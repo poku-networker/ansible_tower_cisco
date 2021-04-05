@@ -1,7 +1,9 @@
 ---
 ### Playbook to configure Vlan on IOS Device
 
-- hosts: phl-ios-mgmt1-dhcp
+- name: Configuring phl-ios-mgmt1 over DHCP assigned IP
+  hosts: phl-ios-mgmt1-dhcp
+  gather_facts: no
 
   tasks:
     - name: Configure access ports
