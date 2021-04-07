@@ -29,5 +29,6 @@
       register: int_output
     
     - name: Print out the output
-      debug: msg: int_output.stdout
+      debug: 
+        var: int_output.stdout
 ...
