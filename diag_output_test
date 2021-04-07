@@ -1,0 +1,17 @@
+---
+### Playbook to configure Vlan on IOS Device
+
+- name: Playbook to use Diagnostic Output as information source for next task
+  hosts: phl-ios-sw1
+  gather_facts: no
+
+
+  tasks:
+    - name: Find STP root and blocked Ports
+      ios_command:
+        commands: show spanning-tree vlan 450 root
+      register: stp_output
+    
+    - name: Print out the output
+      debug: 
+        var: stp_output.stdout_lines[3]
