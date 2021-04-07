@@ -14,7 +14,7 @@
     
     - name: Print out the output
       debug: 
-        msg:"{{ stp_output.stdout_lines[1] }}"
+        msg:"{{ stp_output.stdout_lines[0] }}"
 
     - name: Print out the output
       debug: 
