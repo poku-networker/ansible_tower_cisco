@@ -7,6 +7,46 @@
 
 
   tasks:
+    - name: Find if Interface Running config already has "switchport trunk allowed vlan" - Step I
+      ios_command:
+        commands: show run interface gi0/1
+      register: sh_run_output
+    
+    - name: Find if Interface Running Config has "switchport trunk allowed vlan" Configured - Step II
+      fail:
+        msg: " This configuration -->> << switchport trunk allowed vlan >>  is not present on the interface"
+      when: ("switchport trunk allowed vlan" not in sh_run_output.stdout|string)
+
+    - name: Add VLAN to trunk ports
+      cisco.ios.ios_config:
+        lines:
+        - switchport trunk allowed vlan add "{{ vlan_id }}"
+        parents: interface GigabitEthernet0/1
+      #when: ("{{ action_item | replace('\n', '') }}" == "add")
+      when: ("add" in action_item|string)
+    
+    - name: Remove VLAN from trunk ports
+      cisco.ios.ios_config:
+        lines:
+        - switchport trunk allowed vlan remove "{{ vlan_id }}"
+        parents: interface GigabitEthernet0/1
+      when: ("remove" in action_item|string)
+ 
+    - name: Save the config
+      ios_config:
+        save_when: changed
+
+    - name: Diagnostic Commands
+      ios_command:
+        commands: 
+          - show interface gi0/1 status
+          - show run interface gi0/1
+      register: output
+
+    - name: Print out the output
+      debug: 
+        var: output.stdout_lines
+
 #    - name: Configure access ports
 #      cisco.ios.ios_config:
 #        lines:
@@ -21,16 +61,6 @@
 #      - interface GigabitEthernet1/0
 #      - interface GigabitEthernet1/1
 #      - interface GigabitEthernet3/2
-
-    - name: Find if Interface Running config already has "switchport trunk allowed vlan" - Step I
-      ios_command:
-        commands: show run interface gi0/1
-      register: sh_run_output
-    
-    - name: Find if Interface Running Config has "switchport trunk allowed vlan" Configured - Step II
-      fail:
-        msg: " This configuration -->> << switchport trunk allowed vlan >>  is not present on the interface"
-      when: ("switchport trunk allowed vlan" not in sh_run_output.stdout|string)
       
 # If the variable is not a list, you can convert it into a list, with either stdout_lines or with variable.stdout.split() For ex:sh_run_output.stdout_lines
 #    - name: Add home dirs to the backup spooler
@@ -60,37 +90,11 @@
 #     ios_config:
 #       save_when: changed   
 
-    - name: Add VLAN to trunk ports
-      cisco.ios.ios_config:
-        lines:
-        - switchport trunk allowed vlan add "{{ vlan_id }}"
-        parents: interface GigabitEthernet0/1
-      #when: ("{{ action_item | replace('\n', '') }}" == "add")
-      when: ("add" in action_item|string)
-    
-    - name: Remove VLAN from trunk ports
-      cisco.ios.ios_config:
-        lines:
-        - switchport trunk allowed vlan remove "{{ vlan_id }}"
-        parents: interface GigabitEthernet0/1
-      when: ("remove" in action_item|string)
+
 #   - name: Unshut SVI 599
 #     cisco.ios.ios_config:
 #       lines:
 #       - no shutdown
 #       parents: interface Vlan 599
         
-    - name: Save the config
-      ios_config:
-        save_when: always  
 
-    - name: Diagnostic Commands
-      ios_command:
-        commands: 
-          - show interface gi0/1 status
-          - show run interface gi0/1
-      register: output
-
-    - name: Print out the output
-      debug: 
-        var: output.stdout_lines
