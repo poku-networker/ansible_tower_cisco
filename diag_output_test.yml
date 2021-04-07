@@ -12,9 +12,16 @@
         commands: show spanning-tree vlan 450 root
       register: stp_output
     
+    - set_fact:
+      my_var: "{{ stp_output.stdout_lines:[0][3] }}"
+
+  - name: Print
+    debug:
+      var: my_var
+    
     - name: Print out the output
       debug: 
-        msg:"{{ stp_output.stdout_lines[0] }}"
+        var: my_var
 
     - name: Print out the output
       debug: 
