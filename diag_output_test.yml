@@ -25,7 +25,7 @@
     
     - name: Sh Running Configuration of Root Port
       ios_command:
-        commands: show run interface "{{ root_port }}"
+        commands: show run interface "{{ root_port | trim }}"
       register: int_output
     
     - name: Print out the output
