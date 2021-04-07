@@ -14,5 +14,9 @@
     
     - name: Print out the output
       debug: 
-        var: stp_output.stdout_lines[3]
+        msg:"{{ stp_output.stdout_lines[3] }}""
+
+    - name: Print out the output
+      debug: 
+        var: stp_output.stdout_lines
 ...
