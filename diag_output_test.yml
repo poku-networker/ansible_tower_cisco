@@ -30,5 +30,5 @@
     
     - name: Print out the output
       debug: 
-        var: int_output.stdout
+        var: int_output.stdout_lines
 ...
