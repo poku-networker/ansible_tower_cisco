@@ -13,7 +13,8 @@
       register: stp_output
     
     - set_fact:
-        root_port: "{{ stp_output.stdout_lines[0][3].split()[7] | regex_replace('"', '') }}"
+        #root_port: "{{ stp_output.stdout_lines[0][3].split()[7] | regex_replace('"', '') }}"
+        root_port: "{{ stp_output.stdout_lines[0][3].split()[7] }}"
     
     - name: Print out the output
       debug: 
