@@ -13,11 +13,11 @@
       register: stp_output
     
     - set_fact:
-        my_var: "{{ stp_output.stdout_lines[0][3].split()[7] }}"
+        root_port: "{{ stp_output.stdout_lines[0][3].split()[7] }}"
     
     - name: Print out the output
       debug: 
-        var: my_var
+        var: root_port
 
     - name: Print out the output
       debug: 
