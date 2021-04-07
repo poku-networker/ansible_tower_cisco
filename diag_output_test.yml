@@ -13,7 +13,7 @@
       register: stp_output
     
     - set_fact:
-        my_var: "{{ stp_output.stdout_lines:[0][3] }}"
+        my_var: "{{ stp_output.stdout_lines[3] }}"
     
     - name: Print out the output
       debug: 
