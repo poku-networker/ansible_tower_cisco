@@ -9,8 +9,8 @@
     - name: Configure access ports
       cisco.ios.ios_config:
         lines:
-        - switchport mode access
         - switchport access vlan 599
+        - switchport mode access
         parents: '{{ item }}'
       with_items:
       - interface GigabitEthernet0/0
