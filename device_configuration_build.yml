@@ -1,0 +1,7 @@
+---
+host_name: '{{ v_host_name }}
+-name: " Building the device configuration"
+template:
+  src: "template/base.j2"
+  dest:"~/afne/output/config/{{host_name}}.txt"
+...
