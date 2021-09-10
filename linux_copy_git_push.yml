@@ -1,18 +1,19 @@
 ---
-# Playbook to copy files from docker container to GitHub Directory: 
+# Playbook to copy files from docker container to GitHub Directory 
 
 - hosts: linux_centos
   tasks:
 
-    - name: Copy file from docker to GitHub Directory:
+    - name: Copy file from docker to GitHub Directory
       command: docker cp 7d050b370f8f:/var/lib/awx/afne/output/backup /home/poku/github/ansible_tower_cisco
       become: yes
       become_method: sudo
     
-    - name: List files in GitHub/ansible_cisco_tower dir:
+    - name: List files in GitHub/ansible_cisco_tower dir
       command: ls -al /home/poku/github/ansible_tower_cisco
       register: list_files
                   
     - name: Pre-Change Print-out --> "Show Cron Service status"
       debug: 
         msg: "{{ list_files.stdout_lines[0] }}"
+...
