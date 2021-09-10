@@ -16,7 +16,7 @@
     - name: Print -> "List of files and dirs"
       debug: 
         msg: "{{ item }}"
-        with_items: 
+      with_items: 
           list_files.stdout_lines[0]
           list_files.stdout_lines[1]
           list_files.stdout_lines[2]
