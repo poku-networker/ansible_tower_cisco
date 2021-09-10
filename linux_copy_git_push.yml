@@ -13,7 +13,7 @@
       command: ls -al /home/poku/github/ansible_tower_cisco/backup
       register: list_files
                   
-    - name: Print -> "List of files and dir"
+    - name: Print -> "List of files and dirs"
       debug: 
         msg: "{{ item }}"
         with_items: 
