@@ -16,4 +16,3 @@
     - name: Pre-Change Print-out --> "Show Cron Service status"
       debug: 
         msg: "{{ list_files.stdout_lines[0] }}"
-...
