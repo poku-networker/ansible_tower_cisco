@@ -10,9 +10,9 @@
       become_method: sudo
     
     - name: List files in GitHub/ansible_cisco_tower dir
-      command: ls -al /home/poku/github/ansible_tower_cisco
+      command: ls -al /home/poku/github/ansible_tower_cisco/backup
       register: list_files
                   
     - name: Pre-Change Print-out --> "Show Cron Service status"
       debug: 
-        msg: "{{ list_files.stdout_lines[0] }}"
+        msg: "{{ list_files.stdout[0] }}"
