@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 5227 bytes
+Current configuration : 4934 bytes
 !
-! Last configuration change at 22:17:51 est Thu Sep 9 2021 by admin
+! Last configuration change at 22:24:06 est Sun Feb 28 2021 by admin
 !
 version 15.2
 service timestamps debug datetime msec
@@ -55,9 +55,6 @@ lldp run
 !
 !
 !
-interface Loopback200
- ip address 200.200.200.200 255.255.255.255
-!
 interface GigabitEthernet0/0
  description phl-ios-sw1
  switchport access vlan 599
@@ -101,13 +98,11 @@ interface GigabitEthernet1/1
  negotiation auto
 !
 interface GigabitEthernet1/2
- switchport access vlan 599
  switchport mode access
  media-type rj45
  negotiation auto
 !
 interface GigabitEthernet1/3
- switchport access vlan 599
  switchport mode access
  media-type rj45
  negotiation auto
@@ -142,7 +137,6 @@ interface GigabitEthernet3/0
 !
 interface GigabitEthernet3/2
  description Linux-For-Mgmt
- switchport access vlan 599
  switchport mode access
  media-type rj45
  negotiation auto
@@ -200,9 +194,6 @@ no ip http secure-server
 ip ssh version 2
 !
 !
-logging host 192.168.10.1
-logging host 192.168.20.1
-logging host 1.1.1.1
 !
 !
 !
@@ -240,15 +231,12 @@ line vty 0 4
  transport input all
 !
 ntp server 9.9.9.9
-ntp server 25.25.25.25
 ntp server 2.2.2.2
-ntp server 10.10.10.10
 ntp server 99.99.99.99
 ntp server 3.3.3.3
 ntp server 20.20.20.20
 ntp server 4.4.4.4
 ntp server 5.5.5.5
 ntp server 6.6.6.6
-ntp server 23.23.23.23
 !
 end
