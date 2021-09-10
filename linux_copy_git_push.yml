@@ -17,11 +17,9 @@
       debug: 
         var: list_files.stdout_lines
     
-    - name: Sync Git Status
-      command: "{{ item }}"
-      with_items:
-        - 'cd /home/poku/github/ansible_tower_cisco/backup'
-        - 'git pull'
-        #- git add .
-        #- git commit -m update
-        #- git push
+    - name: pull from git
+      git:
+        repo: git@github.com:poku-networker/ansible_tower_cisco.git
+        dest: /home/poku/github/ansible_tower_cisco
+        update: yes
+        version: master 
