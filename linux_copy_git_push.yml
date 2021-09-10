@@ -16,3 +16,11 @@
     - name: Print -> "List of files and dir"
       debug: 
         msg: "{{ list_files.stdout }}"
+    
+    - name: Sync Git Status
+      command: "{{ item }}"
+      with_items:
+        - git pull
+        - git add .
+        - git commit -m update
+        - git push
