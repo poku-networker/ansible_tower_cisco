@@ -16,10 +16,9 @@
     - name: Print -> "List of files and dir"
       debug: 
         var: list_files.stdout_lines
-    
-    - name: pull from git
-      git:
-        repo: git@github.com:poku-networker/ansible_tower_cisco.git
+        
+    - name: Checkout a github repo and use refspec to fetch all pull requests
+      ansible.builtin.git:
+        repo: https://github.com/poku-networker/ansible_tower_cisco.git
         dest: /home/poku/github/ansible_tower_cisco
-        update: yes
-        version: master 
+        refspec: '+refs/pull/*:refs/heads/*'
