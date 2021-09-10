@@ -11,7 +11,7 @@
     
     - name: List files in GitHub/ansible_cisco_tower dir
       command: ls -al /home/poku/github/ansible_tower_cisco/backup
-      register: list_files
+      register: list_files|string
                   
     - name: Print -> "List of files and directories"
       debug: 
