@@ -23,7 +23,7 @@
         dest: /home/poku/github/ansible_tower_cisco
         refspec: '+refs/pull/*:refs/heads/*'
     
-    - name: HTTPS | push all changes.
+    - name: Push all changes.
       git_acp:
         user: poku-networker
         token: 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
