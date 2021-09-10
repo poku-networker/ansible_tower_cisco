@@ -15,11 +15,12 @@
                   
     - name: Print -> "List of files and dir"
       debug: 
-        msg: "{{ list_files.stdout }}"
+        var: "{{ list_files.stdout_lines }}"
     
     - name: Sync Git Status
       command: "{{ item }}"
       with_items:
+        - cd /home/poku/github/ansible_tower_cisco/backup
         - git pull
         - git add .
         - git commit -m update
