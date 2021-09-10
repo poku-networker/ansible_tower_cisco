@@ -11,8 +11,8 @@
     
     - name: List files in GitHub/ansible_cisco_tower dir
       command: ls -al /home/poku/github/ansible_tower_cisco/backup
-      register: list_files|'string'
+      register: list_files
                   
     - name: Print -> "List of files and directories"
       debug: 
-        msg: "{{ list_files.stdout[0] }}"
+        msg: "{{ list_files.stdout_lines[0]+list_files.stdout_lines[1]+list_files.stdout_lines[2]+list_files.stdout_lines[3]+list_files.stdout_lines[4] }}"
