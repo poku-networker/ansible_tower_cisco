@@ -13,6 +13,6 @@
       command: ls -al /home/poku/github/ansible_tower_cisco/backup
       register: list_files
                   
-    - name: Pre-Change Print-out --> "Show Cron Service status"
+    - name: Print -> "List of files and directories"
       debug: 
         msg: "{{ list_files.stdout[0] }}"
