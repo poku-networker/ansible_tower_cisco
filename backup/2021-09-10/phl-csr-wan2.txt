@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 2462 bytes
+Current configuration : 2494 bytes
 !
-! Last configuration change at 01:20:06 UTC Fri Sep 10 2021
+! Last configuration change at 04:48:15 UTC Fri Sep 10 2021 by admin
 !
 version 16.8
 service timestamps debug datetime msec
@@ -188,6 +188,7 @@ line vty 0 4
  transport input all
 !
 ntp server 9.9.9.9
+ntp server 41.41.41.41
 ntp server 2.2.2.2
 ntp server 10.10.10.10
 ntp server 99.99.99.99
