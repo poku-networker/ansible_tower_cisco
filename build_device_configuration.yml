@@ -1,5 +1,5 @@
 ---
-- name: Playbootk to Build Network Device Configuration
+- name: Playbook to Build Network Device Configuration
   hosts: linux_centos
   gather_facts: no
   
