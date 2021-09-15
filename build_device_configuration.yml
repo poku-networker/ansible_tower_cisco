@@ -1,5 +1,5 @@
 ---
-- name: Configure from Jinja2 Template
+- name: Build Device Configuration
   hosts: localhost
   include_role:
     name: awx_eveng_lab
