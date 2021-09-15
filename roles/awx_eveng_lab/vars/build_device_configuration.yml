@@ -1,0 +1,6 @@
+host_name: '{{ v_hostname }}'
+mgmt_ip: '{{ v_mgmt_ip}}' 
+mgmt_ip_net_mask: '{{ v_mgmt_ip_net_mask }}'
+ntp_server1: 10.10.10.10
+logging_server1: 15.15.15.15
+logging_server2: 25.25.25.25

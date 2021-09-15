@@ -1,0 +1,19 @@
+---
+### Playbook to configure IOS Device
+
+- name: Configuring IOS Devices
+  hosts: "{{ item }}"
+  with_items: "{{v_hostname}}"
+  gather_facts: no
+  
+  tasks:
+    - name: Configure device from Text Configuration file
+      include_role:
+        name: awx_eveng_lab
+        tasks_from: deploy_device_configuration.yml
+    
+    - name: Save the config
+      ios_config:
+        save_when: always
+
+...
