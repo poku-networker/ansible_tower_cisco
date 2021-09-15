@@ -3,7 +3,7 @@
 
 - name: Configuring IOS Devices
   hosts: "{{ item }}"
-  with_items: "{{v_device}}"
+  with_items: "{{v_hostname}}"
   gather_facts: no
   
   tasks:
