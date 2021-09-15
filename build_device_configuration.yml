@@ -1,0 +1,7 @@
+---
+- name: Configure from Jinja2 Template
+  hosts: localhost
+  include_role:
+    name: awx_eveng_lab
+    tasks_from: build_device_configuration.yml
+    vars_from: build_device_configuration.yml
