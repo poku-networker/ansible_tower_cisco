@@ -1,5 +1,5 @@
 ---
 - name: Deploy Device Configuration Built Using Template
   ios_config:
-    src: "~/afne/configuration/ntp.txt"
+    src: ""../configs/"{{ hostname }}".txt"
 ...
