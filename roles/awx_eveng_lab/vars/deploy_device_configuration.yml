@@ -1,3 +1,2 @@
----
 host_name: '{{ v_hostname }}'
-...
+
