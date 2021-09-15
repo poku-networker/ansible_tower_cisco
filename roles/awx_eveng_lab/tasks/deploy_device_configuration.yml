@@ -1,5 +1,5 @@
 ---
 - name: Deploy Device Configuration Built Using Template
   ios_config:
-    src: ""../configs/"{{ host_name }}".txt"
+    src: "../configs/"{{ host_name }}".txt"
 ...
