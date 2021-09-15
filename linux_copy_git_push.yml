@@ -10,12 +10,12 @@
       #become_method: sudo
 
     - name: Copy file from docker to GitHub Directory
-      command: "{{ items }}"
-      become: yes
-      become_method: sudo
+      command: "{{ item }}"
       with_items:
         - docker cp 7d050b370f8f:/var/lib/awx/afne/output/backup /home/poku/github/ansible_tower_cisco
         - docker cp 7d050b370f8f:/var/lib/awx/afne/output/diag /home/poku/github/ansible_tower_cisco
+      become: yes
+      become_method: sudo
     
     - name: List files in GitHub/ansible_cisco_tower dir
       command: ls -al /home/poku/github/ansible_tower_cisco/backup
