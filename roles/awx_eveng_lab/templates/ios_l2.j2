@@ -42,8 +42,8 @@ no ip http secure-server
 ip ssh version 2
 !
 !
-logging host {{ logging.server1 }}
-logging host {{ logging.server2 }}
+logging host {{ logging_server1 }}
+logging host {{ logging_server2 }}
 !
 !
 control-plane
@@ -70,6 +70,6 @@ line vty 0 4
  login local
  transport input all
 !
-ntp server {{ ntp.server1 }}
+ntp server {{ ntp_server1 }}
 !
 end
