@@ -1,0 +1,4 @@
+---
+- name: Configure multiple lines of commands from text file
+  ios_config:
+    src: "~/afne/configuration/ntp.txt"
