@@ -27,14 +27,14 @@ lldp run
 !
 interface Loopback200
  description "Mgmt IP"
- ip address 172.16.20.212 255.255.255.0
+ ip address 192.168.20.1 255.255.255.0
 !
-interface GigabitEthernet3/3
- description host
- switchport access vlan 999
- switchport mode access
- media-type rj45
- negotiation auto
+!interface GigabitEthernet3/3
+! description host
+! switchport access vlan 999
+! switchport mode access
+! media-type rj45
+! negotiation auto
 !
 no ip http server
 no ip http secure-server
