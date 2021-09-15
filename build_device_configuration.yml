@@ -1,7 +1,11 @@
 ---
-- name: Build Device Configuration
+- name: Playbootk to Build Network Device Configuration
   hosts: linux_centos
-  include_role:
-    name: awx_eveng_lab
-    tasks_from: build_device_configuration.yml
-    vars_from: build_device_configuration.yml
+  gather_facts: no
+  
+  tasks:
+    - name: Start Building Device Configuration
+      include_role:
+        name: awx_eveng_lab
+        tasks_from: build_device_configuration.yml
+        vars_from: build_device_configuration.yml
