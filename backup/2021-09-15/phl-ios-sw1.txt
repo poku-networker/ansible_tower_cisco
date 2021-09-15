@@ -1,13 +1,13 @@
 Building configuration...
 
   
-Current configuration : 3689 bytes
+Current configuration : 2906 bytes
 !
-! Last configuration change at 02:15:06 UTC Wed Sep 15 2021 by admin
+! Last configuration change at 00:21:53 est Wed Sep 15 2021 by admin
 !
 version 15.2
 service timestamps debug datetime msec
-service timestamps log datetime msec
+service timestamps log datetime localtime year
 no service password-encryption
 service compress-config
 !
@@ -17,9 +17,11 @@ boot-start-marker
 boot-end-marker
 !
 !
+no logging console
 !
 username admin privilege 15 password 0 admin
 no aaa new-model
+clock timezone est -5 0
 !
 !
 !
@@ -57,7 +59,8 @@ lldp run
 !
 !
 interface Loopback200
- ip address 200.200.200.200 255.255.255.255
+ description "Mgmt IP"
+ ip address 192.168.20.1 255.255.255.0
 !
 interface GigabitEthernet0/0
  switchport trunk encapsulation dot1q
@@ -115,6 +118,8 @@ ip scp server enable
 logging host 192.168.10.1
 logging host 192.168.20.1
 logging host 1.1.1.1
+logging host 15.15.15.15
+logging host 25.25.25.25
 access-list 18 permit 10.10.10.0 0.0.0.255
 !
 !
@@ -123,27 +128,19 @@ control-plane
 !
 banner exec ^C
 **************************************************************************
-* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
-* education. IOSv is provided as-is and is not supported by Cisco's      *
-* Technical Advisory Center. Any use or disclosure, in whole or in part, *
-* of the IOSv Software or Documentation to any third party for any       *
-* purposes is expressly prohibited except as otherwise authorized by     *
-* Cisco in writing.                                                      *
-**************************************************************************^C
+* Only For Evaluation  *
+**************************************************************************
+^C
 banner incoming ^C
 **************************************************************************
-* IOSv is strictly limited to use for evaluation, demonstration and IOS  *
-* education. IOSv is provided as-is and is not supported by Cisco's      *
-* Technical Advisory Center. Any use or disclosure, in whole or in part, *
-* of the IOSv Software or Documentation to any third party for any       *
-* purposes is expressly prohibited except as otherwise authorized by     *
-* Cisco in writing.                                                      *
-**************************************************************************^C
-banner login ^CC
-*******************************************************************************************
-WELCOME TO SURAJ'S LAB SWITCH. PRACTICE AS MUCH AS YOU CAN !!!! IT'S FREE ..YAY :-) 
-*******************************************************************************************
-
+* Only For Evaluation  *                                                  *
+**************************************************************************
+^C
+banner login ^C
+C
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+WELCOME TO SURAJ'S LAB. IT'S FREE !!! yAy
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 ^C
 !
 line con 0

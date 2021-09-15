@@ -20,7 +20,7 @@ Compiled Wed 22-Jul-15 23:04 by prod_rel_team
 
 ROM: Bootstrap program is IOSv
 
-phl-ios-core1 uptime is 20 minutes
+phl-ios-core1 uptime is 56 minutes
 System returned to ROM by reload
 System image file is "flash0:/vios-adventerprisek9-m"
 Last reload reason: Unknown reason
