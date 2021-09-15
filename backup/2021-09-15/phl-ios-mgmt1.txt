@@ -1,17 +1,16 @@
 Building configuration...
 
-  
-Current configuration : 3578 bytes
+Current configuration : 5149 bytes
 !
-! Last configuration change at 07:00:22 UTC Fri Sep 10 2021 by admin
+! Last configuration change at 21:04:52 est Tue Sep 14 2021 by admin
 !
 version 15.2
 service timestamps debug datetime msec
-service timestamps log datetime msec
+service timestamps log datetime localtime year
 no service password-encryption
 service compress-config
 !
-hostname phl-ios-sw2
+hostname phl-ios-mgmt1
 !
 boot-start-marker
 boot-end-marker
@@ -20,8 +19,8 @@ boot-end-marker
 no logging console
 !
 username admin privilege 15 password 0 admin
-username poku privilege 15 password 0 06102020
 no aaa new-model
+clock timezone est -5 0
 !
 !
 !
@@ -39,7 +38,6 @@ no ipv6 cef
 !
 spanning-tree mode rapid-pvst
 spanning-tree extend system-id
-spanning-tree pathcost method long
 !
 vlan internal allocation policy ascending
 lldp run
@@ -61,59 +59,148 @@ interface Loopback200
  ip address 200.200.200.200 255.255.255.255
 !
 interface GigabitEthernet0/0
- switchport trunk encapsulation dot1q
- switchport mode trunk
+ description phl-ios-sw1
+ switchport access vlan 599
+ switchport mode access
  media-type rj45
  negotiation auto
 !
 interface GigabitEthernet0/1
- switchport trunk allowed vlan 20-22,599
- switchport trunk encapsulation dot1q
- switchport mode trunk
+ description phl-ios-core1
+ switchport access vlan 599
+ switchport mode access
  media-type rj45
  negotiation auto
 !
 interface GigabitEthernet0/2
- switchport trunk allowed vlan 450-460
- switchport trunk encapsulation dot1q
- switchport mode trunk
+ description phl-csr-wan1
+ switchport access vlan 599
+ switchport mode access
  media-type rj45
  negotiation auto
- spanning-tree cost 65000
 !
 interface GigabitEthernet0/3
- media-type rj45
- negotiation auto
-!
-interface GigabitEthernet1/1
- media-type rj45
- negotiation auto
-!
-interface GigabitEthernet1/2
- media-type rj45
- negotiation auto
-!
-interface GigabitEthernet1/3
+ description phl-ios-sw2
+ switchport access vlan 599
+ switchport mode access
  media-type rj45
  negotiation auto
 !
 interface GigabitEthernet1/0
- description phl-ios-mgmt1
- no switchport
- ip address 172.16.20.16 255.255.255.0
+ description phl-ios-core2
+ switchport access vlan 599
+ switchport mode access
+ media-type rj45
  negotiation auto
+!
+interface GigabitEthernet1/1
+ description phl-csr-wan2
+ switchport access vlan 599
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/2
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet1/3
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/0
+ switchport trunk allowed vlan 20-22,40,599
+ switchport trunk encapsulation dot1q
+ switchport trunk native vlan 20
+ switchport trunk pruning vlan 21
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/1
+ switchport trunk allowed vlan 20-22,40,599
+ switchport trunk encapsulation dot1q
+ switchport mode trunk
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/2
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet2/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/0
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/2
+ description Linux-For-Mgmt
+ switchport access vlan 599
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/3
+ media-type rj45
+ negotiation auto
+!
+interface GigabitEthernet3/1
+ description Cloud Connnection
+ no switchport
+ ip address dhcp
+ negotiation auto
+!
+interface Vlan599
+ ip address 172.16.20.1 255.255.255.0
 !
 ip forward-protocol nd
 !
 no ip http server
 no ip http secure-server
 !
-ip route 0.0.0.0 0.0.0.0 172.16.20.1 name default_route
 ip ssh version 2
 !
 !
 logging host 192.168.10.1
 logging host 192.168.20.1
+logging host 1.1.1.1
 !
 !
 !
@@ -138,9 +225,10 @@ banner incoming ^C
 * Cisco in writing.                                                      *
 **************************************************************************^C
 banner login ^CC
--------------------------------------------------
-Suraj's Lab Switch. Practice for free !!! 
--------------------------------------------------
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+WELCOME TO SURAJ'S LAB. IT'S FREE !!! yAy
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 ^C
 !
 line con 0
@@ -150,7 +238,6 @@ line vty 0 4
  transport input all
 !
 ntp server 9.9.9.9
-ntp server 41.41.41.41
 ntp server 2.2.2.2
 ntp server 10.10.10.10
 ntp server 99.99.99.99
@@ -158,7 +245,6 @@ ntp server 3.3.3.3
 ntp server 20.20.20.20
 ntp server 4.4.4.4
 ntp server 5.5.5.5
-ntp server 101.101.101.101
 ntp server 6.6.6.6
 ntp server 23.23.23.23
 !

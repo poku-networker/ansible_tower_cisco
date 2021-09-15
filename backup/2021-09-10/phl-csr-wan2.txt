@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 2494 bytes
+Current configuration : 2568 bytes
 !
-! Last configuration change at 04:48:15 UTC Fri Sep 10 2021 by admin
+! Last configuration change at 07:23:13 UTC Fri Sep 10 2021 by admin
 !
 version 16.8
 service timestamps debug datetime msec
@@ -71,6 +71,7 @@ spanning-tree extend system-id
 !
 !
 username admin privilege 15 password 0 admin
+username poku privilege 15 password 0 06102020
 !
 redundancy
 !
@@ -196,6 +197,7 @@ ntp server 3.3.3.3
 ntp server 20.20.20.20
 ntp server 4.4.4.4
 ntp server 5.5.5.5
+ntp server 101.101.101.101
 ntp server 6.6.6.6
 wsma agent exec
 !

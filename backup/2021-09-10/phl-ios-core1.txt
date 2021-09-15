@@ -1,9 +1,9 @@
 Building configuration...
 
   
-Current configuration : 3979 bytes
+Current configuration : 4053 bytes
 !
-! Last configuration change at 04:42:43 UTC Fri Sep 10 2021 by admin
+! Last configuration change at 07:14:11 UTC Fri Sep 10 2021 by admin
 !
 version 15.5
 service timestamps debug datetime msec
@@ -50,6 +50,7 @@ domain bhandari.com
 !
 !
 username admin privilege 15 password 0 admin
+username poku privilege 15 password 0 06102020
 !
 redundancy
 !
@@ -210,6 +211,7 @@ ntp server 3.3.3.3
 ntp server 20.20.20.20
 ntp server 4.4.4.4
 ntp server 5.5.5.5
+ntp server 101.101.101.101
 ntp server 6.6.6.6
 ntp server 23.23.23.23
 !

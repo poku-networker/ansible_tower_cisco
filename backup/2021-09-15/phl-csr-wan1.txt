@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 2373 bytes
+Current configuration : 2347 bytes
 !
-! Last configuration change at 07:23:22 UTC Fri Sep 10 2021 by admin
+! Last configuration change at 02:16:57 UTC Wed Sep 15 2021 by admin
 !
 version 16.8
 service timestamps debug datetime msec
@@ -72,7 +72,6 @@ spanning-tree extend system-id
 !
 username peach privilege 15 password 0 peach
 username admin privilege 15 password 0 admin
-username poku privilege 15 password 0 06102020
 !
 redundancy
 !
@@ -167,6 +166,7 @@ ip ssh version 2
 !
 logging host 192.168.10.1
 logging host 192.168.20.1
+logging host 1.1.1.1
 !
 !
 !

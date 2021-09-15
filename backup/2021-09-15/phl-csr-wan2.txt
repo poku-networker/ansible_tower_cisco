@@ -1,8 +1,8 @@
 Building configuration...
 
-Current configuration : 2373 bytes
+Current configuration : 2492 bytes
 !
-! Last configuration change at 07:23:22 UTC Fri Sep 10 2021 by admin
+! Last configuration change at 02:16:43 UTC Wed Sep 15 2021 by admin
 !
 version 16.8
 service timestamps debug datetime msec
@@ -11,7 +11,7 @@ platform qfp utilization monitor load 80
 no platform punt-keepalive disable-kernel-core
 platform console serial
 !
-hostname phl-csr-wan1
+hostname phl-csr-wan2
 !
 boot-start-marker
 boot-end-marker
@@ -62,7 +62,7 @@ multilink bundle-name authenticated
 !
 !
 !
-license udi pid CSR1000V sn 9D56T6D1V8W
+license udi pid CSR1000V sn 90QEU5DJJW9
 no license smart enable
 diagnostic bootup level minimal
 !
@@ -70,9 +70,7 @@ spanning-tree extend system-id
 !
 !
 !
-username peach privilege 15 password 0 peach
 username admin privilege 15 password 0 admin
-username poku privilege 15 password 0 06102020
 !
 redundancy
 !
@@ -81,7 +79,6 @@ redundancy
 !
 !
 !
-lldp run
 ! 
 !
 !
@@ -152,7 +149,8 @@ interface GigabitEthernet7
  no mop sysid
 !
 interface GigabitEthernet8
- ip address 172.16.20.19 255.255.255.0
+ description phl-ios-mgmt1
+ ip address 172.16.20.20 255.255.255.0
  negotiation auto
  no mop enabled
  no mop sysid
@@ -167,6 +165,7 @@ ip ssh version 2
 !
 logging host 192.168.10.1
 logging host 192.168.20.1
+logging host 1.1.1.1
 !
 !
 !
@@ -177,6 +176,11 @@ control-plane
 !
 !
 !
+banner motd ^CC
+------------------------------------------------
+Suraj's LAB. Practice for free !!
+------------------------------------------------
+^C
 !
 line con 0
  stopbits 1
@@ -187,6 +191,7 @@ line vty 0 4
 ntp server 9.9.9.9
 ntp server 2.2.2.2
 ntp server 10.10.10.10
+ntp server 99.99.99.99
 ntp server 3.3.3.3
 ntp server 20.20.20.20
 ntp server 4.4.4.4
