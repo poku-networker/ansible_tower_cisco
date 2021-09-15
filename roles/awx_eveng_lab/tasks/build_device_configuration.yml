@@ -1,5 +1,5 @@
 ---
 - name: "Generate the Device Configuration"
   template: 
-    src:ios_l2.j2
+    src:"ios_l2.j2"
     dest: "~/afne/output/config/{{host_name}}.txt"
