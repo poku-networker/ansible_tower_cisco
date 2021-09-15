@@ -3,7 +3,7 @@ service timestamps log datetime localtime year
 no service password-encryption
 service compress-config
 !
-hostname {{ item.hostname }}
+hostname {{ host_name }}
 !
 boot-start-marker
 boot-end-marker
@@ -27,7 +27,7 @@ lldp run
 !
 interface Loopback200
  description "Mgmt IP"
- ip address {{item.mgmt_ip}} {{item.mgmt_ip_net_mask}}
+ ip address {{mgmt_ip}} {{mgmt_ip_net_mask}}
 !
 interface GigabitEthernet3/3
  description host
