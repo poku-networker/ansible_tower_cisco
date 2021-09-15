@@ -1,5 +1,5 @@
 ---
-- name: Configure multiple lines of commands from text file
+- name: Deploy Device Configuration Built Using Template
   ios_config:
     src: "~/afne/configuration/ntp.txt"
 ...
