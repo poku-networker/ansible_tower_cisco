@@ -1,0 +1,75 @@
+service timestamps debug datetime msec
+service timestamps log datetime localtime year
+no service password-encryption
+service compress-config
+!
+hostname phl-ios-sw1
+!
+boot-start-marker
+boot-end-marker
+!
+no logging console
+!
+username admin privilege 15 password 0 admin
+no aaa new-model
+clock timezone est -5 0
+!
+no ip domain-lookup
+ip domain-name bhandari.com
+ip cef
+no ipv6 cef
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+vlan internal allocation policy ascending
+lldp run
+!
+interface Loopback200
+ description "Mgmt IP"
+ ip address 172.16.20.212 255.255.255.0
+!
+interface GigabitEthernet3/3
+ description host
+ switchport access vlan 999
+ switchport mode access
+ media-type rj45
+ negotiation auto
+!
+no ip http server
+no ip http secure-server
+!
+ip ssh version 2
+!
+!
+logging host 15.15.15.15
+logging host 25.25.25.25
+!
+!
+control-plane
+!
+banner exec ^C
+**************************************************************************
+* Only For Evaluation  *
+**************************************************************************^C
+banner incoming ^C
+**************************************************************************
+* Only For Evaluation  *                                                  *
+**************************************************************************^C
+banner login ^CC
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+WELCOME TO SURAJ'S LAB. IT'S FREE !!! yAy
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+          
+^C
+!
+line con 0
+line aux 0
+line vty 0 4
+ login local
+ transport input all
+!
+ntp server 10.10.10.10
+!
+end
