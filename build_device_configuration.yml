@@ -1,6 +1,6 @@
 ---
 - name: Playbook to Build Network Device Configuration
-  hosts: linux_centos
+  hosts: linux_centos # This will cause the file to be stored native to centos linux instead of docker container
   gather_facts: no
   
   tasks:
