@@ -4,10 +4,18 @@
 - hosts: linux_centos
   tasks:
 
+    #- name: Copy file from docker to GitHub Directory
+     # command: docker cp 7d050b370f8f:/var/lib/awx/afne/output/backup /home/poku/github/ansible_tower_cisco
+      #become: yes
+      #become_method: sudo
+
     - name: Copy file from docker to GitHub Directory
-      command: docker cp 7d050b370f8f:/var/lib/awx/afne/output/backup /home/poku/github/ansible_tower_cisco
+      command: "{{ items }}"
       become: yes
       become_method: sudo
+      with_items:
+        - docker cp 7d050b370f8f:/var/lib/awx/afne/output/backup /home/poku/github/ansible_tower_cisco
+        - docker cp 7d050b370f8f:/var/lib/awx/afne/output/diag /home/poku/github/ansible_tower_cisco
     
     - name: List files in GitHub/ansible_cisco_tower dir
       command: ls -al /home/poku/github/ansible_tower_cisco/backup
@@ -17,9 +25,9 @@
       debug: 
         var: list_files.stdout_lines
         
-    - name: Checkout a github repo and use refspec to fetch all pull requests
-      ansible.builtin.git:
-        repo: https://github.com/poku-networker/ansible_tower_cisco.git
-        dest: /home/poku/github/ansible_tower_cisco
-        refspec: '+refs/pull/*:refs/heads/*'
+   # - name: Checkout a github repo and use refspec to fetch all pull requests
+    #  ansible.builtin.git:
+    #    repo: https://github.com/poku-networker/ansible_tower_cisco.git
+    #    dest: /home/poku/github/ansible_tower_cisco
+    #    refspec: '+refs/pull/*:refs/heads/*'
     
