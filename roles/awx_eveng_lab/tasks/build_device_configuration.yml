@@ -2,4 +2,4 @@
 - name: "Generate the Device Configuration"
   template: 
     src: "ios_l2.j2"
-    dest: "~/afne/output/config/{{host_name}}.txt"
+    dest: "~github/ansible_tower_cisco/config/{{host_name}}.txt"
