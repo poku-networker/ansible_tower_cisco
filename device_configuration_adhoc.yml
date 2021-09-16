@@ -30,34 +30,34 @@
       ios_config:
         save_when: changed   
 
-- name: Configuring CSR Devices
-  hosts: phl_csr_devices
-  gather_facts: no
+#- name: Configuring CSR Devices
+#  hosts: phl_csr_devices
+#  gather_facts: no
 
-  tasks:
+#  tasks:
     
-    - name: Find if Running config already has "{{ adhoc_config }}" - Step I
-      ios_command:
-        commands: show run
-      register: sh_run_output
+#    - name: Find if Running config already has "{{ adhoc_config }}" - Step I
+#      ios_command:
+#        commands: show run
+#      register: sh_run_output
     
     #- set_fact:
     #    adhoc_config_fact: "{{ adhoc_config }}"
     
-    - name: Find if Running Config already has "{{ adhoc_config }}" - Step II
-      fail:
-        msg: " This configuration -->> << '{{ item }}' >>  is already present on the device"
-      when: >
-        ( item in sh_run_output.stdout|string)
-      with_items: "{{ adhoc_config }}"
+#    - name: Find if Running Config already has "{{ adhoc_config }}" - Step II
+#      fail:
+#        msg: " This configuration -->> << '{{ item }}' >>  is already present on the device"
+#      when: >
+#        ( item in sh_run_output.stdout|string)
+#      with_items: "{{ adhoc_config }}"
         
-    - name: Configure a single/multiple lines of command
-      ios_config: 
-        lines: "{{ item }}"
-      with_items: "{{ adhoc_config }}"
+#    - name: Configure a single/multiple lines of command
+#      ios_config: 
+ #       lines: "{{ item }}"
+ #     with_items: "{{ adhoc_config }}"
     
-    - name: Save the config
-      ios_config:
-        save_when: changed  
+ #   - name: Save the config
+ #     ios_config:
+   #     save_when: changed  
         
 ...
