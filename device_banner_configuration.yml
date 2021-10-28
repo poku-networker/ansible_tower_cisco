@@ -7,12 +7,12 @@
   
   tasks:
    
-    - name: Configure MOTD Banner from Jinja2 Template
-      include_role:
-        name: awx_eveng_lab
-        tasks_from: motd_banner.yml
-        vars_from: global_vars
-    
+    - name: Configure MOTD Banner from File
+      cisco.ios.ios_banner:
+        banner: motd
+        text: "{{ lookup('file', 'roles/awx_eveng_lab/configs/motd_banner.j2') }}"
+        state: present
+        
     - name: Save the config
       ios_config:
         save_when: always
