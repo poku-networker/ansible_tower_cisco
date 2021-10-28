@@ -1,1 +1,5 @@
+---
+
+- name: Configure motd banner from Jinja File
+    src: "../configs/ntp.j2"
 
