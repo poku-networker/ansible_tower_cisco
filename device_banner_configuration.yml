@@ -2,7 +2,7 @@
 ### Playbook to configure IOS Device
 
 - name: Configuring IOS Devices
-  hosts: phl-ios-mgmt1
+  hosts: "{{ cisco_router }}"
   gather_facts: no
   
   tasks:
